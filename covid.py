@@ -6,9 +6,12 @@ from bs4 import BeautifulSoup as soup
 #country='japan'
 #key=['pandemic','covid plan']
 
-def getlinks(inp):
+def getlinks(inp): 
+    
+    #This function searches the internet with keywords.
+    
     print('Searching...\n------------------------------')
-    base='https://www.bing.com/search?q='+inp
+    base='https://www.bing.com/search?q='+inp                 #I HAD TO USE Bing BECAUSE IT WASN'T WORKING WITH Google OR DuckDuckGo
     #base=urllib.parse.urljoin('https://www.bing.com/search?q=',inp)
     print(base)
     r=requests.get(base)
@@ -48,7 +51,10 @@ def getlinks(inp):
         print(str(index[i])+'.',link[i])
     print('---------------------')
 
-def getstats(country):
+def getstats(country): 
+    
+    #This function gives us the live updates about the number of active,recovered,total and death cases.
+    
     base="https://www.worldometers.info/coronavirus/country/"
     geturl=urllib.parse.urljoin(base,country)
     r=requests.get(geturl)
