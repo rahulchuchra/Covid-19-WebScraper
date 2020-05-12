@@ -6,7 +6,7 @@ import textwrap
 from bs4 import BeautifulSoup as soup
 #country='japan'
 #key=['pandemic','covid plan']
-
+check=['coronavirus','covid','covid-19','pandemic','exit plan','corona','vaccine','active cases']
 def getlinks(inp): 
     
     #This function searches the internet with keywords.
@@ -84,7 +84,8 @@ def getcontent(links,keywords,country,key):
             r=textwrap.fill(row,200)
             output.write(str(i)+'. '+ r + '\n\n')
             print('\n')
-
+    print('\nYour txt file has now been saved as country+key+".txt"!')
+    
 def getstats(country): 
     
     #This function gives us the live updates about the number of active,recovered,total and death cases.
@@ -111,7 +112,7 @@ def getstats(country):
     print('Recovered:',recovered)
 print('Press 1 for stats.\nPress 2 for Keyword search.')
 choice=input()
-check=['coronavirus','covid','covid-19','pandemic','exit plan']
+
 
 if choice=='1':
     country=input('Enter the country: ')
@@ -129,4 +130,3 @@ elif choice=='2':
         print('Finished Search.\n')
 else:
     print('INVALID CHOICE!')
-print('\nYour txt file has now been saved as "country-namecovid.txt"!')
