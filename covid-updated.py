@@ -6,7 +6,7 @@ import textwrap
 from bs4 import BeautifulSoup as soup
 #country='japan'
 #key=['pandemic','covid plan']
-check=['coronavirus','covid','covid-19','pandemic','exit plan','corona','vaccine','active cases']
+
 def getlinks(inp): 
     
     #This function searches the internet with keywords.
@@ -54,11 +54,7 @@ def getlinks(inp):
     return link
 
 paralist=list()
-
-def getcontent(links,keywords,country,key):             
-
-#This function stores all the paragraphs with relevent keywords to a .txt file. Automatically called after getlinks() function.
- 
+def getcontent(links,keywords,country,key):
     for i in links:
         print(i)
         res=requests.get(i)
@@ -75,17 +71,16 @@ def getcontent(links,keywords,country,key):
     
     paralist1=list(dict.fromkeys(paralist))
     print(len(paralist1))
-    if not open(country+key+".txt", 'w',encoding='utf-8'):
-        open(country+key+".txt", 'w',encoding='utf-8')
-    with open(country+key+".txt", 'a+',encoding='utf-8') as output:
+   # if not open(country+".txt", 'w',encoding='utf-8'):
+    #    open(country+".txt", 'w',encoding='utf-8')
+    with open(country+key+".txt", 'w',encoding='utf-8') as output:
         i=0
         for row in paralist1:
             i+=1
             r=textwrap.fill(row,200)
             output.write(str(i)+'. '+ r + '\n\n')
- 
-    print('\nYour txt file has now been saved as country+key+".txt"!')
-    
+    print('\nYour txt file has now been saved as '+ country+key+".txt")
+
 def getstats(country): 
     
     #This function gives us the live updates about the number of active,recovered,total and death cases.
@@ -112,7 +107,7 @@ def getstats(country):
     print('Recovered:',recovered)
 print('Press 1 for stats.\nPress 2 for Keyword search.')
 choice=input()
-
+check=['coronavirus','covid','covid-19','pandemic','exit plan']
 
 if choice=='1':
     country=input('Enter the country: ')
@@ -121,12 +116,13 @@ elif choice=='2':
     key=list(input('Enter keywords separated by ",": ').split(','))
     country=input("Enter the country: ")
     linklist=list()
-    linklist.clear()
     for i in range(len(key)):  
         inp=key[i]+'+'+ country
+        linklist.clear()
         got=getlinks(inp)
         linklist.extend(got)
         getcontent(linklist,check,country,key[i])
         print('Finished Search.\n')
 else:
     print('INVALID CHOICE!')
+
