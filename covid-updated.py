@@ -83,7 +83,7 @@ def getcontent(links,keywords,country,key):
             i+=1
             r=textwrap.fill(row,200)
             output.write(str(i)+'. '+ r + '\n\n')
-            print('\n')
+ 
     print('\nYour txt file has now been saved as country+key+".txt"!')
     
 def getstats(country): 
